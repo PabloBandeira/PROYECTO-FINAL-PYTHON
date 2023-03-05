@@ -2,6 +2,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,6 +10,7 @@
     <title>Organizá tu Tarea!</title>
     <link rel="stylesheet" href="{% static 'styles/main.css' %}">
 </head>
+
 <body>
 
     <nav class="navbar container">
@@ -16,7 +18,7 @@
             <li>
                 <a href="{% url 'index' %}">Home</a>
             </li>
-             <li>
+            <li>
                 <a href="{% url 'about' %}">About</a>
             </li>
             <li>
@@ -31,15 +33,29 @@
             <li>
                 <a href="{% url 'create_project' %}">Create project</a>
             </li>
+
+            {% if user.is_authenticated %}
+            <li>
+                <a href="{% url 'logout' %}">Logout</a>
+            </li>
+            {% else %}
+            <li>
+                <a href="{% url 'signup' %}">Signup</a>
+            </li>
+            <li>
+                <a href="{% url 'signin' %}">Signin</a>
+            </li>
+            {% endif %}
         </ul>
-    
+
     </nav>
-    
+
     <main class="container">
         {% block content %}
         {% endblock %}
     </main>
 
-    
+
 </body>
+
 </html>
